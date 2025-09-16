@@ -10,12 +10,16 @@ export async function GET(request: NextRequest) {
     const apiKey = 'f3600d5b98134c8ab46a388957a58b4d';
     const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}&pageSize=${pageSize}&page=${page}`;
     
+    console.log('Fetching from URL:', url);
     const res = await fetch(url);
     const data = await res.json();
+    
+    console.log('API Response:', data);
+    console.log('Articles count:', data.articles?.length);
     
     return NextResponse.json(data);
   } catch (error) {
     console.error('News API error:', error);
-    return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch news', details: error.message }, { status: 500 });
   }
 }
