@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 
@@ -59,9 +60,11 @@ export default function NewsCard({ article }: Props) {
       </span>
 
       {urlToImage && !imgError ? (
-        <img
+        <Image
           src={urlToImage}
           alt={title}
+          width={400}
+          height={192}
           onError={() => setImgError(true)}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />
