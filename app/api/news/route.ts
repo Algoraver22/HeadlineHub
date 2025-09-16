@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const pageSize = searchParams.get('pageSize') || '12';
 
   try {
-    const apiKey = process.env.NEXT_PUBLIC_NEWS_APIKEY;
+    const apiKey = 'f3600d5b98134c8ab46a388957a58b4d';
     const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}&pageSize=${pageSize}&page=${page}`;
     
     const res = await fetch(url);
