@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 
@@ -60,14 +59,15 @@ export default function NewsCard({ article }: Props) {
       </span>
 
       {urlToImage && !imgError ? (
-        <Image
-          src={urlToImage}
-          alt={title}
-          width={400}
-          height={192}
-          onError={() => setImgError(true)}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+        <div className="w-full h-48 relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={urlToImage}
+            alt={title}
+            onError={() => setImgError(true)}
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
       ) : (
         <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400 italic font-semibold text-sm select-none">
           Image Not Available

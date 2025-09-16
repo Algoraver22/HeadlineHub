@@ -1,4 +1,3 @@
-// app/api/auth/[...nextauth]/authOptions.ts
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import { NextAuthOptions } from "next-auth";
@@ -16,13 +15,5 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
-  },
-  callbacks: {
-    session: async ({ session, token }) => {
-      return session;
-    },
-    jwt: async ({ token }) => {
-      return token;
-    },
   },
 };
