@@ -4,8 +4,20 @@ import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 
 export const metadata = {
-  title: "NewsFox | Stay Updated",
-  description: "A sleek Next.js News App fetching latest headlines by category",
+  title: "HeadlineHub | Global News by Anurag",
+  description: "Stay updated with latest headlines from 100+ sources worldwide. Built by Anurag.",
+  keywords: "news, headlines, global news, breaking news, Anurag, HeadlineHub",
+  authors: [{ name: "Anurag" }],
+  creator: "Anurag",
+  publisher: "HeadlineHub",
+  icons: {
+    icon: "🌍",
+  },
+  openGraph: {
+    title: "HeadlineHub | Global News by Anurag",
+    description: "Stay updated with latest headlines from 100+ sources worldwide",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
