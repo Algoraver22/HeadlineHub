@@ -37,8 +37,7 @@ export default function NewsList({ category }: Props) {
     setError(null);
 
     try {
-      const apiKey = process.env.NEXT_PUBLIC_NEWS_APIKEY;
-      const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}&pageSize=${pageSize}&page=${page}`;
+      const url = `/api/news?category=${category}&pageSize=${pageSize}&page=${page}`;
       const res = await fetch(url);
       const data = await res.json();
 
