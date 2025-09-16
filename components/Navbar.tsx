@@ -28,8 +28,11 @@ export default function Navbar() {
           href="/"
           className="text-xl font-extrabold text-white tracking-wide flex items-center gap-1 hover:text-red-500 transition-all duration-300"
         >
-          <span className="text-2xl">🦊</span>
-          <span className="text-red-500">NewsFox</span>
+          <span className="text-2xl">🌍</span>
+          <div className="flex flex-col">
+            <span className="text-red-500">HeadlineHub</span>
+            <span className="text-xs text-gray-400 font-normal -mt-1">by Anurag</span>
+          </div>
         </Link>
 
         {/* Center: Categories */}

@@ -8,12 +8,11 @@ type Article = {
   title: string;
   description: string;
   url: string;
-  image: string;
+  urlToImage: string;
   publishedAt: string;
   content: string;
   source: {
     name: string;
-    url: string;
   };
 };
 
@@ -39,7 +38,7 @@ export default function NewsList({ category }: Props) {
 
     try {
       const apiKey = process.env.NEXT_PUBLIC_NEWS_APIKEY;
-      const url = `https://gnews.io/api/v4/top-headlines?lang=en&topic=${category}&token=${apiKey}&max=${pageSize}&page=${page}`;
+      const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}&pageSize=${pageSize}&page=${page}`;
       const res = await fetch(url);
       const data = await res.json();
 
@@ -49,7 +48,7 @@ export default function NewsList({ category }: Props) {
         } else {
           setArticles((prev) => [...prev, ...data.articles]);
         }
-        setTotalResults(data.totalArticles || 0);
+        setTotalResults(data.totalResults || 0);
       } else {
         setArticles([]);
         setTotalResults(0);

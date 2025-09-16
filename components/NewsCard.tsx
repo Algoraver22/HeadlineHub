@@ -9,15 +9,15 @@ type Props = {
     title: string;
     description: string;
     url: string;
-    image: string | null;
+    urlToImage: string | null;
     publishedAt: string;
     content?: string;
-    source: { name: string; url: string };
+    source: { name: string };
   };
 };
 
 export default function NewsCard({ article }: Props) {
-  const { title, description, url, image, publishedAt, source } = article;
+  const { title, description, url, urlToImage, publishedAt, source } = article;
 
   const [imgError, setImgError] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
@@ -34,7 +34,7 @@ export default function NewsCard({ article }: Props) {
         body: JSON.stringify({
           title,
           url,
-          imageUrl: image,
+          imageUrl: urlToImage,
           source: source?.name,
         }),
       });
@@ -58,9 +58,9 @@ export default function NewsCard({ article }: Props) {
         {source?.name}
       </span>
 
-      {image && !imgError ? (
+      {urlToImage && !imgError ? (
         <img
-          src={image}
+          src={urlToImage}
           alt={title}
           onError={() => setImgError(true)}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
