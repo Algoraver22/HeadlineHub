@@ -7,19 +7,31 @@ export async function GET(request: NextRequest) {
   const pageSize = searchParams.get('pageSize') || '12';
 
   try {
-    const apiKey = 'f3600d5b98134c8ab46a388957a58b4d';
-    const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}&pageSize=${pageSize}&page=${page}`;
+    // Using NewsData.io instead of NewsAPI (works better in production)
+    const apiKey = 'pub_62284c4c8c8a4c0f4b8e9d2a1f3e5b7c9';
+    const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=us&category=${category}&size=${pageSize}`;
     
-    console.log('Fetching from URL:', url);
     const res = await fetch(url);
     const data = await res.json();
     
-    console.log('API Response:', data);
-    console.log('Articles count:', data.articles?.length);
+    // Transform to match NewsAPI format
+    const transformedData = {
+      status: 'ok',
+      totalResults: data.totalResults || 0,
+      articles: data.results?.map((article: any) => ({
+        title: article.title,
+        description: article.description,
+        url: article.link,
+        urlToImage: article.image_url,
+        publishedAt: article.pubDate,
+        content: article.content,
+        source: { name: article.source_id }
+      })) || []
+    };
     
-    return NextResponse.json(data);
+    return NextResponse.json(transformedData);
   } catch (error) {
     console.error('News API error:', error);
-    return NextResponse.json({ error: 'Failed to fetch news', details: error.message }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 });
   }
 }
