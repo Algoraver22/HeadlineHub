@@ -15,7 +15,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  favorites     Favorite[] // 👈 Include this if you're combining with favorites
+  favorites     Favorite[]
 }
 
 model Account {
